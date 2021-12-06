@@ -2,11 +2,7 @@
 # Convert input to a string
 def file2list(input_filename):
     with open(input_filename,"r") as input_file:
-        input_str = input_file.read()
-    str_list = input_str.split(",")
-    int_list = []
-    for each in str_list: int_list.append(int(each))
-    return int_list
+        return list(map(int,input_file.read().split(",")))
 
 ########################
 # First tried with recursion, couldn't get it to work
@@ -34,6 +30,7 @@ def part1(fish_rank,total_days):
 
 # Read input file
 fish_list = file2list("input6.inc")
+print(fish_list)
 # Create list where each index contains the number of fishes with that number, and fill it
 fish_rank = [0]*9
 for i in fish_list: fish_rank[i] += 1
