@@ -107,7 +107,7 @@ def part2(vent_list,fill_dict):
     return countCoords(fill_dict)
 
 # Read input file
-coord_list = file2list("input5.inc")
+coord_list = file2list("include/input5.inc")
 vent_list,xmax,ymax = mapVents(coord_list)
 result1,fill_dict = part1(vent_list)
 print("----DAY 5----\nPart1: %s"%result1)

@@ -85,7 +85,7 @@ def part2(crab_list,crab_spot_list):
     return spending_dict[min(spending_dict, key=spending_dict.get)]    # Return the spot with min fuel spent
 
 # Read input file
-crab_list = file2list("include/input7.inc")
+crab_list = file2list("input7.inc")
 result1,crab_spot_list = part1(crab_list)
 print("----DAY 7----\nPart1: %s"%result1)
 print("Part2: %s"%part2(crab_list,crab_spot_list))

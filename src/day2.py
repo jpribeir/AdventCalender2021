@@ -26,7 +26,7 @@ def part2(move_list):
 
 # Read input file
 move_list = []
-with open("include/input2.inc","r") as move_file:
+with open("input2.inc","r") as move_file:
     move_list = move_file.readlines()
 
 print("Part1: %s"%part1(move_list))
