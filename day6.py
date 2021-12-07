@@ -30,7 +30,6 @@ def part1(fish_rank,total_days):
 
 # Read input file
 fish_list = file2list("input6.inc")
-print(fish_list)
 # Create list where each index contains the number of fishes with that number, and fill it
 fish_rank = [0]*9
 for i in fish_list: fish_rank[i] += 1
