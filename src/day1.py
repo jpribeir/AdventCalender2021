@@ -16,7 +16,7 @@ def part2(sonar_list):
 
 # Read input file
 sonar_list = []
-with open("input1.inc","r") as sonar_file:
+with open("../include/input1.inc","r") as sonar_file:
     sonar_list = sonar_file.readlines()
 
 print("Part1: %s"%part1(sonar_list))

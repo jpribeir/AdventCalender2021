@@ -66,7 +66,7 @@ def part2(drawn_list,puzzle_list):
                 if num_unsolved == 1: return answer
 
 # Read input file
-drawn_list,puzzle_list = file2list("input4.inc")
+drawn_list,puzzle_list = file2list("../include/input4.inc")
 for puz in puzzle_list: puz.calcSum()
 result1,newstart = part1(drawn_list,puzzle_list)
 print("Part1: %s"%result1)

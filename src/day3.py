@@ -52,6 +52,6 @@ def part2(bin_list):
     return int(O2GR,2)*int(CO2SR,2)
 
 # Read input file
-bin_list = file2list("input3.inc",True)
+bin_list = file2list("../include/input3.inc",True)
 print("Part1: %s"%part1(bin_list))
 print("Part2: %s"%part2(bin_list))

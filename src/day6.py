@@ -29,7 +29,7 @@ def part1(fish_rank,total_days):
     return sum(fish_rank)   # Return sum of whole list
 
 # Read input file
-fish_list = file2list("input6.inc")
+fish_list = file2list("../include/input6.inc")
 # Create list where each index contains the number of fishes with that number, and fill it
 fish_rank = [0]*9
 for i in fish_list: fish_rank[i] += 1
