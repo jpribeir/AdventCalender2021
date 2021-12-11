@@ -10,7 +10,7 @@ def file2list(input_filename):
         octo_map.append(auxlist)
     return octo_map
 
-# Updates each number it visits and its neighbours
+# Updates each number it visits and its neighbours (yey recursion again)
 def updateNum(octo_map,i,j,flash_count):
     # If index is in table's bounds
     if i in range(len(octo_map)) and j in range(len(octo_map[0])):
