@@ -53,18 +53,29 @@ def file2list(input_filename):
             if not checkedB: cave_dict[caveB] = [caveA]
     return cave_dict
 
-def enterCave(here,cave_dict):
-    for
+def enterCave(here,cave_dict,visited_list):
+    path_count = 0
+    print(visited_list)
+    for cave in cave_dict[here]:
+        if cave.isupper():
+            aux_list = visited_list.copy()
+            aux_list.append(cave)
+            path_count += enterCave(cave,cave_dict,aux_list)
+        elif cave.islower():
+            if cave=="end":
+                return 1
+            elif cave not in visited_list:
+                aux_list = visited_list.copy()
+                aux_list.append(cave)
+                path_count += enterCave(cave,cave_dict,aux_list)
+                visited_list = aux_list.copy()
+    return path_count
 
 def part1(cave_dict):
-    return enterCave("start",cave_dict)
+    return enterCave("start",cave_dict,["start"])
 
 # Read input file
 cave_dict = file2list("../include/input12.inc")
-for cave in cave_dict:
-    print(cave)
-    print(cave_dict[cave])
-example_list = file2list("../include/example12.inc")
-#path_count = part1(cave_list)
-#print("----DAY 12----\nPart1: %s"%part1(example_list))
+#example_list = file2list("../include/example12.inc")
+print("----DAY 12----\nPart1: %s"%part1(cave_dict))
 #print("Part2: %s"%part2(out_map,100))
