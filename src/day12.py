@@ -7,70 +7,50 @@ def file2list(input_filename):
     for line in input_list:
         caveA = line.strip().split("-")[0]
         caveB = line.strip().split("-")[1]
+        # Removing start from each cave's list helps a lot later
         if caveB!="start":
-            try:
+            try:    # if cave is already in dict
                 cave_dict[caveA].append(caveB)
-            except:
+            except: # else
                 cave_dict[caveA] = [caveB]
         if caveA!="start":
             try:
                 cave_dict[caveB].append(caveA)
             except:
                 cave_dict[caveB] = [caveA]
-        
     return cave_dict
 
-def enterCavePart1(here,cave_dict,visited_list,ident):
-    print("%s%s"%(ident,visited_list))
+# When in a cave, recursively enter its list of cave neighbours until end
+def enterCave(here,cave_dict,visited_list,lowmax):
     path_count = 0
+    # List of times each small cave was visited
+    lowercount_list = [visited_list.count(cave) for cave in visited_list if cave.islower()]
     for cave in cave_dict[here]:
         aux_list = visited_list.copy()
+        # If neighbour is a big cave go in
         if cave.isupper():
             aux_list.append(cave)
-            path_count += enterCavePart1(cave,cave_dict,aux_list,ident+":")
+            path_count += enterCave(cave,cave_dict,aux_list,lowmax)
+        # If neighbour is end, just increment the path count
         elif cave=="end":
-            visited_list.append(cave)
-            print("%s%s<---"%(ident,visited_list))
             path_count += 1
+        # If neighbour is a small cave but path hasn't crossed the same small cave <lowmax> times
+        elif not lowmax in lowercount_list:
+            aux_list.append(cave)
+            path_count += enterCave(cave,cave_dict,aux_list,lowmax)
+        # If neighbour is small case and hasn't been visited
         elif cave not in visited_list:
             aux_list.append(cave)
-            path_count += enterCavePart1(cave,cave_dict,aux_list,ident+":")
-    print("%s%s paths found on this level"%(ident,path_count))
-    return path_count
-
-def enterCave(here,cave_dict,visited_list,ident,lowmax):
-    #print("%s%s"%(ident,visited_list))
-    path_count = 0
-    lower_dict = {cave:visited_list.count(cave) for cave in cave_dict[here] if cave.islower()}
-    for cave in cave_dict[here]:
-        aux_list = visited_list.copy()
-        print("%s%s"%(ident,lower_dict))
-        if cave.isupper():
-            aux_list.append(cave)
-            path_count += enterCave(cave,cave_dict,aux_list,ident+":",lowmax)
-        elif cave=="end":
-            visited_list.append(cave)
-            print("%s%s<---"%(ident,visited_list))
-            #print("%sReached end at %s!"%(ident,here))
-            path_count += 1
-        elif not lowmax in lower_dict.values():
-            aux_list.append(cave)
-            path_count += enterCave(cave,cave_dict,aux_list,ident+":",lowmax)
-        elif cave not in visited_list:
-            aux_list.append(cave)
-            path_count += enterCave(cave,cave_dict,aux_list,ident+":",lowmax)
-    #print("%s%s paths found on this level"%(ident,path_count))
+            path_count += enterCave(cave,cave_dict,aux_list,lowmax)
     return path_count
 
 def part1(cave_dict):
-    return enterCavePart1("start",cave_dict,["start"],"")
+    return enterCave("start",cave_dict,["start"],1)
 
 def part2(cave_dict):
-    return enterCave("start",cave_dict,["start"],"",2)
+    return enterCave("start",cave_dict,["start"],2)
 
 # Read input file
 cave_dict = file2list("../include/input12.inc")
-example_dict = file2list("../include/example12.inc")
-#print(example_dict)
-#print("----DAY 12----\nPart1: %s"%part1(example_dict))
-print("Part2: %s"%part2(example_dict))
+print("----DAY 12----\nPart1: %s"%part1(cave_dict))
+print("Part2: %s"%part2(cave_dict))
