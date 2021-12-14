@@ -25,7 +25,6 @@ def part2(move_list):
     return xx*zz
 
 # Read input file
-move_list = []
 with open("../include/input2.inc","r") as move_file:
     move_list = move_file.readlines()
 

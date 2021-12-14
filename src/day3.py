@@ -1,14 +1,8 @@
 # Day 3 of the 2021 Advent of Code
 # Convert input to a list, optional to strip \n
-def file2list(input_filename,strip_en):
+def file2list(input_filename):
     with open(input_filename,"r") as input_file:
-        input_list = input_file.readlines()
-    if strip_en:
-        cleaned_list = []
-        for line in input_list:
-            cleaned_list.append(line.strip())
-        return cleaned_list
-    else: return input_list
+        return list(map(lambda a: a.strip(),input_file.readlines()))
 
 def searchCode(bin_list,index,mcb):
     if len(bin_list) > 1:
@@ -52,6 +46,6 @@ def part2(bin_list):
     return int(O2GR,2)*int(CO2SR,2)
 
 # Read input file
-bin_list = file2list("../include/input3.inc",True)
+bin_list = file2list("../include/input3.inc")
 print("Part1: %s"%part1(bin_list))
 print("Part2: %s"%part2(bin_list))

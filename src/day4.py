@@ -21,13 +21,10 @@ class Bingo():
 def file2list(input_filename):
     with open(input_filename,"r") as input_file:
         input_list = input_file.readlines()
+    firstline_list = input_list[0].split(",")   # First line has list of bingo draws
     puzzle_list = []
-    firstLine = True
-    for line in input_list:
-        if firstLine:           # First line has list of bingo draws
-            firstline_list = line.split(",")
-            firstLine = False
-        elif line.strip()=="":  # Emply lines come before the start of a puzzle
+    for line in input_list[1:]:
+        if line.strip()=="":  # Emply lines come before the start of a puzzle
             puzzle_list.append(Bingo())
         else:                   # The remaining lines are part of a puzzle
             ((puzzle_list[-1]).row_list).append(line.strip().split())
