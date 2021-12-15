@@ -2,13 +2,7 @@
 # # Convert input to a list of lists
 def file2list(input_filename):
     with open(input_filename,"r") as input_file:
-        input_list = input_file.readlines()
-    octo_map = []
-    for i,line in enumerate(input_list):
-        auxlist = []
-        for num in line.strip(): auxlist.append(int(num))
-        octo_map.append(auxlist)
-    return octo_map
+         return [[int(num) for num in line.strip()] for line in input_file.readlines()]
 
 # Updates each number it visits and its neighbours (yey recursion again)
 def updateNum(octo_map,i,j,flash_count):
@@ -27,12 +21,12 @@ def updateNum(octo_map,i,j,flash_count):
 # Updates the whole table for one step
 def updateTable(octo_map,flash_count):
     for i,line in enumerate(octo_map):
-            for j,num in enumerate(line):
-                flash_count,octo_map = updateNum(octo_map,i,j,flash_count)
+        for j,num in enumerate(line):
+            flash_count,octo_map = updateNum(octo_map,i,j,flash_count)
     # Revisit all octopuses that flashed and reset them to 0
     for i,line in enumerate(octo_map):
         for j,num in enumerate(line):
-            if octo_map[i][j]>9: octo_map[i][j] = 0 
+            if octo_map[i][j]>9: octo_map[i][j] = 0
     return flash_count,octo_map
 
 def part1(octo_map,numsteps):
