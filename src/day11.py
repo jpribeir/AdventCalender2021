@@ -1,8 +1,8 @@
 # Day 11 of the 2021 Advent of Code
-# # Convert input to a list of lists
+# Convert input to a list of lists
 def file2list(input_filename):
     with open(input_filename,"r") as input_file:
-         return [[int(num) for num in line.strip()] for line in input_file.readlines()]
+        return [[int(num) for num in line.strip()] for line in input_file.readlines()]
 
 # Updates each number it visits and its neighbours (yey recursion again)
 def updateNum(octo_map,i,j,flash_count):
